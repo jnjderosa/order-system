@@ -3,11 +3,18 @@
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
-    <munit:config name="munit" doc:name="MUnit configuration"/>
+    <munit:config name="munit" doc:name="MUnit configuration" mock-connectors="false"/>
     <spring:beans>
         <spring:import resource="classpath:order-system.xml"/>
     </spring:beans>
-    <munit:test name="order-system-test-suite-processOrdersTest" description="Test">
-        <flow-ref name="processOrders" doc:name="Flow-ref to processOrders"/>
+    <munit:test name="retrieveOrders_returnsList" description="Test">
+        <munit:set payload="#[]" doc:name="Set Message">
+            <munit:inbound-properties>
+                <munit:inbound-property key="http.query.params" value="#[{'range' : '*'}]"/>
+            </munit:inbound-properties>
+        </munit:set>
+        <flow-ref name="retrieveOrders" doc:name="Flow-ref to retrieveOrders"/>
+        <munit:assert-true condition="#[payload is java.util.List]" doc:name="Assert True"/>
+        <munit:assert-true condition="#[payload.size() &gt; 0]" doc:name="Assert True"/>
     </munit:test>
 </mule>
