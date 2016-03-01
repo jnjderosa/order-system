@@ -19,7 +19,7 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
     </flow>
     <sub-flow name="retrieveOrders">
         <set-variable variableName="dateRange" value="#[message.inboundProperties.'http.query.params'.range]" doc:name="Variable"/>
-        <parse-template location="C:\Users\avio\AnypointStudio5.4\AdvClassWorkspace\order-system\src\main\resources\orderRequest.xml" doc:name="Parse Template"/>
+      <!--   <parse-template location="C:\Users\avio\AnypointStudio5.4\AdvClassWorkspace\order-system\src\main\resources\orderRequest.xml" doc:name="Parse Template"/>-->
         <ws:consumer config-ref="Web_Service_Consumer" operation="provisionOrder" doc:name="Web Service Consumer"/>
         <dw:transform-message doc:name="Transform Message">
             <dw:input-payload doc:sample="provisionOrderResponse.xml"/>
