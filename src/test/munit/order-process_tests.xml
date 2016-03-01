@@ -5,7 +5,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
     <munit:config name="munit" doc:name="MUnit configuration"/>
     <spring:beans>
-        <spring:import resource="classpath:order-system.xml"/>
+        <spring:import resource="order-system.xml"/>
     </spring:beans>
     <munit:before-test name="prepareOrderMessage" description="Before tests actions">
         <munit:set payload="#[[{'orderID':444, 'location':'international','price':14.01}, {'orderID':444,'location':'international','price':14.01}, {'orderID':555, 'location':'domestic','price':14.01}]]" doc:name="Set Message"/>
@@ -15,7 +15,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
         <munit:assert-true condition="#[message.payload is java.util.Map]" doc:name="Assert True" message="Expected payload to be Map, but was #[payload.getClass().getName()]"/>
         <munit:assert-on-equals expectedValue="#[2]" actualValue="#[message.payload.size()]" doc:name="Assert Equals" message="Expected 2 records"/>
     </munit:test>
-       <munit:test name="processOrders_internationKeyReturnsInternationlOrders" description="The value of the map key international contains only international orders">
+       <munit:test name="processOrders_internationKeyReturnsInternationlOrders" description="The value of the map key international contains only international orders" ignore="true">
         <flow-ref name="processOrders" doc:name="processOrders"/>
         <munit:assert-true condition="#[message.payload.'international'.size() &gt;0]" doc:name="Assert True" message="no international records"/>
         <foreach collection="#[payload.international]" doc:name="For Each">

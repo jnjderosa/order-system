@@ -6,7 +6,7 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
 http://www.mulesoft.org/schema/mule/mock http://www.mulesoft.org/schema/mule/mock/current/mule-mock.xsd">
     <munit:config name="munit" doc:name="MUnit configuration" mock-connectors="false"/>
     <spring:beans>
-        <spring:import resource="classpath:order-system.xml"/>
+        <spring:import resource="order-system.xml"/>
     </spring:beans>
     <munit:test name="retrieveOrders_returnsList" description="Test">
         <mock:when doc:name="Mock" messageProcessor="ws:consumer">
