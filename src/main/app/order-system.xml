@@ -13,6 +13,7 @@ http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/cu
     <ws:consumer-config name="Web_Service_Consumer" wsdlLocation="orders.wsdl" service="OrderServiceService" port="OrderServicePort" serviceAddress="http://training-u.cloudhub.io/advanced/orders" doc:name="Web Service Consumer"/>
     <flow name="main">
         <http:listener config-ref="HTTP_Listener_Configuration_8086" path="/" doc:name="HTTP"/>
+        <logger message="mydebug" level="DEBUG" doc:name="Logger"/>
         <flow-ref name="retrieveOrders" doc:name="retrieveOrders"/>
         <flow-ref name="processOrders" doc:name="processOrders"/>
     </flow>
