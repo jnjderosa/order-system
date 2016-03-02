@@ -105,7 +105,7 @@
 					<deploymentType>cloudhub</deploymentType>
 					<muleVersion>3.7.2</muleVersion>
 					<username>jderosaapiws</username>
-					<password>Workshop0223</password>
+					<password>${password}</password>
 					<workerType>Micro</workerType>
 					<redeploy>true</redeploy>
 					<environment>Production</environment>
