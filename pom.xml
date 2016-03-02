@@ -167,6 +167,9 @@
         <testResource>
                 <directory>src/test/resources</directory>
             </testResource>
+                    <testResource>
+                <directory>src/it</directory>
+            </testResource>
         </testResources>
     </build>
 
