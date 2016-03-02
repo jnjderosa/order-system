@@ -121,6 +121,29 @@
                     </coverage>
                 </configuration>
             </plugin>
+            <plugin>
+        <groupId>org.mule.tools.maven</groupId>
+        <artifactId>mule-maven-plugin</artifactId>
+        <version>2.0</version>
+        <configuration>
+					<deploymentType>cloudhub</deploymentType>
+					<muleVersion>3.7.2</muleVersion>
+					<username>jderosaapiws</username>
+					<password>${password}</password>
+					<workerType>Micro</workerType>
+					<redeploy>true</redeploy>
+					<environment>Production</environment>
+        </configuration>
+        <executions>
+            <execution>
+                <id>deploy</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                    <goal>deploy</goal>
+                </goals>
+            </execution>
+            </executions>
+            </plugin>
              <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>
