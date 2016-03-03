@@ -4,7 +4,7 @@
     <server>
       <id>MuleRepository</id>
       <username>muletraining.nexus</username>
-      <password>MuleTraining</password>
+      <password>${serverPassword}</password>
     </server>
   </servers>
   <pluginGroups>
