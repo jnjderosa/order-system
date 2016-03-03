@@ -69,9 +69,9 @@
 								</resource>
 							<resource>
                                     <directory>src/main/api/</directory>
-                                </resource>
-                                <resource>
-                                    <directory>src/it/</directory>
+                                </resource> 
+                                  <resource>
+                                    <directory>src/test/java</directory>
                                 </resource>
                             </resources>
 						</configuration>
@@ -100,18 +100,14 @@
                     </coverage>
                 </configuration>
             </plugin>           
-            <plugin>
+     <!--           <plugin>
        		 	<groupId>org.mule.tools.maven</groupId>
         		<artifactId>mule-maven-plugin</artifactId>
         		<version>2.0</version>
         		<configuration>
-					<deploymentType>cloudhub</deploymentType>
+					<deploymentType>standalone</deploymentType>
 					<muleVersion>3.7.2</muleVersion>
-					<username>jderosaapiws</username>
-					<password>${password}</password>
-					<workerType>Micro</workerType>
-					<redeploy>true</redeploy>
-					<environment>Production</environment>
+					<muleHome>C:\Mulesoft\mule-enterprise-standalone-3.7.3</muleHome>
         		</configuration>
         		<executions>
             		<execution>
@@ -121,14 +117,22 @@
                     		<goal>deploy</goal>
                 		</goals>
             		</execution>
+            		<execution>
+                		<id>undeploy</id>
+               			<phase>post-integration-test</phase>
+               			 <goals>
+                    		<goal>undeploy</goal>
+                		</goals>
+            		</execution>
             	</executions>
-            </plugin>
+            </plugin> -->
             <plugin>
         		<groupId>org.apache.maven.plugins</groupId>
-        		<artifactId>maven-failsafe-plugin</artifactId>
+        		<artifactId>maven-failsafe-plugin</artifactId>  		
         		<executions>
             		<execution>
                 		<id>integration-test</id>
+                		<phase>integration-test</phase>
                 		<goals>
                     		<goal>integration-test</goal>
                     		<goal>verify</goal>
@@ -136,7 +140,7 @@
             		</execution>
        		 	</executions>
     		</plugin>
-    		<plugin>
+    		  		<plugin>
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>2.0</version>
@@ -159,6 +163,7 @@
 					</execution>
 				</executions>
 			</plugin>
+  
         </plugins>
 	<testResources>
             <testResource>
@@ -167,10 +172,10 @@
         <testResource>
                 <directory>src/test/resources</directory>
             </testResource>
-                    <testResource>
-                <directory>src/it</directory>
+            <testResource>
+                <directory>src/test/java</directory>
             </testResource>
-        </testResources>
+         </testResources>
     </build>
 
 	<!-- Mule Dependencies -->
