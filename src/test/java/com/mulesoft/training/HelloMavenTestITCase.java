@@ -10,7 +10,7 @@ public class HelloMavenTestITCase extends FunctionalTestCase {
 
     @Test
     public void mavenFlowReturnsHelloMaven() throws Exception {
-        runFlowAndExpect("helloFlow", "hello");
+        runFlowAndExpect("helloFlow", "hello ");
     }
   
 /**  @Test
